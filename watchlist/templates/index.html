@@ -1,0 +1,28 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Watchlist picker{% endblock %}
+
+{% block content %}
+<div class="movie">
+    <div class="movie-image">
+        <img src="{{ image }}" alt="{{ title }}">
+    </div>
+    <div class="movie-section">
+        <div class="movie-info">
+            {% if title %}
+                <h1>{{ title }} ({{ release }})</h1>
+                <p>{{ overview }}</p>
+            {% elif error %}
+                <h2>{{ error }}</h2>
+            {% else %}
+                <h2>Let us pick your next movie!</h2>
+            {% endif %}
+        </div>
+        <div>
+            {% if title %}
+                <p>Selected out of {{ watchlist_length }} movies.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

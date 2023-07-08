@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'watchlist/style.css' %}">
+</head>
+    <body>
+        <nav class="navbar">
+            <h1><a href="/">Watchlist picker</a></h1>
+        </nav>
+        <div class="container">
+            <div class="center">
+                <div class="form_container">
+                    <form method="post" action="{% url 'get_username' %}"> {% csrf_token %}
+                        <input type="text" name="username" placeholder="Letterbox username" value="{{ username }}" required>
+                        <button type="submit">Pick</button>
+                    </form>
+                </div>
+                {% block content %}{% endblock %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert-message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                 {% endif %}
+            </div>
+        </div>
+    </body>
+</html>
